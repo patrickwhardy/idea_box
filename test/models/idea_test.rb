@@ -15,5 +15,4 @@ class IdeaTest < ActiveSupport::TestCase
 
     assert_equal(Idea.all_sorted.first, idea2)
   end
-
 end
