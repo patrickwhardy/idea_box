@@ -2,17 +2,16 @@
   <div class="well">
     <h1>Ideas</h1>
   </div>
-    <ul>
-      <% @ideas.each do |idea| %>
-      <div class="well">
-        <li> <%= idea.title %><br>
-        Idea: <%= idea.body %><br>
-        Quality: <%= idea.quality %></li>
-      </div>
-      <% end %>
-    </ul>
-    <%= text_area_tag "Title", "Title"  %>
-    <%= text_area_tag "Body", "Body"  %>
-    <button id="create-idea" name="create-idea" class="btn btn-default pull-right">Create Idea</button>
-  </div>
+  <ul class="ideas-index">
+    <% @ideas.each do |idea| %>
+    <div class="well">
+      <li> <%= idea.title %><br>
+      Idea: <%= idea.body %><br>
+      Quality: <%= idea.quality %></li>
+    </div>
+    <% end %>
+  </ul>
+  <%= text_area_tag "Title", "Title"  %>
+  <%= text_area_tag "Body", "Body"  %>
+  <button id="create-idea" name="create-idea" class="btn btn-default pull-right">Create Idea</button>
 </div>

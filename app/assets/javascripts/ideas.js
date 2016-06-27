@@ -9,6 +9,14 @@ function postIdea(){
     url: "/api/v1/ideas",
     dataType: "JSON",
     data: {idea: ideaData},
-    success: $('.ajax-flash').html("<div class='alert alert-success'><h4>Successfully Created a New Idea!</h4></div>")
+    success: function(response) {
+      $(".ideas-index").prepend("<div class='well'><li>" +
+        response.title +
+        "<br> Idea: " +
+        response.body +
+        "<br> Quality: " +
+        response.quality +
+        "</li></div>");
+    }
   })
 }
