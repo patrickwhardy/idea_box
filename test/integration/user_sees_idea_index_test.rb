@@ -2,7 +2,6 @@ require_relative '../test_helper'
 
 class DisplayIdeasTest < ActionDispatch::IntegrationTest
   def setup
-    Capybara.app = IdeaBox::Application
     @idea = create(:idea)
   end
 
@@ -17,7 +16,7 @@ class DisplayIdeasTest < ActionDispatch::IntegrationTest
     within("ul") do
       assert page.has_content?(@idea.title)
       assert page.has_content?(@idea.body)
-      save_and_open_page
+      assert page.has_content?(@idea.quality)
     end
   end
 end
