@@ -1,19 +1,21 @@
 <div class="container">
   <div class="well">
     <h1>Ideas</h1>
+    <p>Add a New Idea Below</p>
+    <%= label_tag "Title" %>
+    <%= text_area_tag "Title" %>
+    <%= label_tag "Body" %>
+    <%= text_area_tag "Body" %>
+    <button id="create-idea" class="btn btn-default pull-right">Save</button>
   </div>
-  <%= label_tag "Title" %>
-  <%= text_area_tag "Title" %>
-  <%= label_tag "Body" %>
-  <%= text_area_tag "Body" %>
-  <button id="create-idea" name="create-idea" class="btn btn-default pull-right">Save</button>
   <ul class="ideas-index">
     <% @ideas.each do |idea| %>
     <div class="well">
-      <li> <%= idea.title %><br>
-      Idea: <%= idea.body %><br>
-      Quality: <%= idea.quality %></li>
-    </div>
+      <li id="idea-<%= idea.id %>"> <%= idea.title %><br>
+      Idea: <%= truncate(idea.body, length: 100, separator: " ") %><br>
+      Quality: <%= idea.quality %>
+      <button class="btn btn-default pull-right delete-idea" data-id="<%= idea.id %>">Delete</button>
+    </div></li>
     <% end %>
   </ul>
 </div>
