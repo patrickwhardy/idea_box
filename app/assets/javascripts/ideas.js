@@ -1,6 +1,8 @@
 $(document).ready(function(){
   $("#create-idea").on("click", postIdea);
   $(".delete-idea").on("click", deleteIdea);
+  $(".thumbs-up").on("click", updateQuality);
+  $(".thumbs-down").on("click", updateQuality);
 })
 
 function postIdea(){
@@ -26,8 +28,22 @@ function deleteIdea(){
     url: "/api/v1/ideas/" + ideaId,
     dataType: "JSON",
     success: function(response) {
-      console.log("success");
       $("#idea-" + ideaId).remove();
+    }
+  })
+}
+
+function updateQuality(){
+  var ideaId = $(this).data("id");
+  var button_type = $(this).attr("class");
+  $.ajax({
+    method: "PATCH",
+    url: "/api/v1/ideas/" + ideaId,
+    dataType: "JSON",
+    data: {button_type: button_type},
+    success: function(response) {
+      $("#idea-" + ideaId)
+      console.log("success");
     }
   })
 }

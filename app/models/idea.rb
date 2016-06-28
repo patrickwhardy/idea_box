@@ -6,4 +6,12 @@ class Idea < ActiveRecord::Base
     ideas = Idea.all
     ideas.sort_by(&:created_at).reverse!
   end
+
+  def update_quality(button_type)
+    if button_type.include? "thumbs-up"
+      self.increment(:quality, 1).save
+    else
+      self.increment(:quality, -1).save
+    end
+  end
 end
