@@ -2,6 +2,11 @@
   <div class="well">
     <h1>Ideas</h1>
   </div>
+  <%= label_tag "Title" %>
+  <%= text_area_tag "Title" %>
+  <%= label_tag "Body" %>
+  <%= text_area_tag "Body" %>
+  <button id="create-idea" name="create-idea" class="btn btn-default pull-right">Save</button>
   <ul class="ideas-index">
     <% @ideas.each do |idea| %>
     <div class="well">
@@ -11,7 +16,4 @@
     </div>
     <% end %>
   </ul>
-  <%= text_area_tag "Title", "Title"  %>
-  <%= text_area_tag "Body", "Body"  %>
-  <button id="create-idea" name="create-idea" class="btn btn-default pull-right">Create Idea</button>
 </div>

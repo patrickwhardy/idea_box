@@ -11,12 +11,14 @@ function postIdea(){
     data: {idea: ideaData},
     success: function(response) {
       $(".ideas-index").prepend("<div class='well'><li>" +
-        response.title +
-        "<br> Idea: " +
-        response.body +
-        "<br> Quality: " +
-        response.quality +
-        "</li></div>");
+        response.title + "<br> Idea: " + response.body +
+        "<br> Quality: " + response.quality + "</li></div>");
+        clearFields();
     }
   })
+}
+
+function clearFields(){
+  $("#Body").val("");
+  $("#Title").val("");
 }
