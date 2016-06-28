@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="well">
+    <h1>Ideas</h1>
+  </div>
+  <%= label_tag "Title" %>
+  <%= text_area_tag "Title" %>
+  <%= label_tag "Body" %>
+  <%= text_area_tag "Body" %>
+  <button id="create-idea" name="create-idea" class="btn btn-default pull-right">Save</button>
+  <ul class="ideas-index">
+    <% @ideas.each do |idea| %>
+    <div class="well">
+      <li> <%= idea.title %><br>
+      Idea: <%= idea.body %><br>
+      Quality: <%= idea.quality %></li>
+    </div>
+    <% end %>
+  </ul>
+</div>
