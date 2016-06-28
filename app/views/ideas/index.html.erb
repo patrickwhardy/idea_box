@@ -10,8 +10,8 @@
   </div>
   <ul class="ideas-index">
     <% @ideas.each do |idea| %>
-    <div class="well">
-      <li id="idea-<%= idea.id %>"> <%= idea.title %><br>
+    <div class="well" id="idea-<%= idea.id %>">
+      <li> <%= idea.title %><br>
       Idea: <%= truncate(idea.body, length: 100, separator: " ") %><br>
       Quality: <%= idea.quality %>
       <button class="btn btn-default pull-right delete-idea" data-id="<%= idea.id %>">Delete</button>

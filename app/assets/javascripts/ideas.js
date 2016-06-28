@@ -27,8 +27,7 @@ function deleteIdea(){
     dataType: "JSON",
     success: function(response) {
       console.log("success");
-      debugger;
-      // $(".ideas-index").remove(idea)
+      $("#idea-" + ideaId).remove();
     }
   })
 }
