@@ -11,7 +11,7 @@
   <ul class="ideas-index">
     <% @ideas.each do |idea| %>
     <div class="well" id="idea-<%= idea.id %>">
-      <li><div class="idea-content">
+      <li><div class="idea-content" id="<%= idea.id %>">
       <p contenteditable="true" class="title"> <%= idea.title %></p><br>
       Idea: <p contenteditable="true" id="body-<%= idea.id %>"><%= truncate(idea.body, length: 100, separator: " ") %></p></div><br>
       Quality: <%= idea.quality %><br>

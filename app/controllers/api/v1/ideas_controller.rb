@@ -12,7 +12,7 @@ class Api::V1::IdeasController < ApplicationController
 
   def update
     @idea = Idea.find(params["id"])
-    @idea.update_quality(params["button_type"])
+    @idea.delegate_edit(params)
     respond_with :api, :v1, @idea, json: @idea
   end
 

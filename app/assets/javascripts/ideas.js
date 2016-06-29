@@ -34,12 +34,12 @@ function deleteIdea(){
 
 function updateQuality(){
   var ideaId = $(this).data("id");
-  var button_type = $(this).attr("class");
+  var inputType = $(this).attr("class");
   $.ajax({
     method: "PATCH",
     url: "/api/v1/ideas/" + ideaId,
     dataType: "JSON",
-    data: {button_type: button_type},
+    data: {inputType: inputType},
     success: function(response) {
       $("#idea-" + ideaId).html(listIdea(response));
     }
@@ -59,11 +59,18 @@ function openEditForm(){
 }
 
 function submitEdits() {
-  console.log("success");
-  console.log(this.innerHTML);
-  var title = this.innerHTML
-  
-  debugger;
+  var inputType = $(this).attr("class");
+  var content = this.innerHTML;
+  var ideaId = $(this).parent().attr("id");
+  $.ajax({
+    method: "PATCH",
+    url: "/api/v1/ideas/" + ideaId,
+    dataType: "JSON",
+    data: {inputType: inputType, content: content},
+    success: function(response) {
+      $("#idea-" + ideaId).html(listIdea(response));
+    }
+  })
 }
 
 function listIdea(response){

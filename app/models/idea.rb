@@ -7,6 +7,20 @@ class Idea < ActiveRecord::Base
     ideas.sort_by(&:created_at).reverse!
   end
 
+  def delegate_edit(params)
+    if params["inputType"].include? "thumbs-up"
+      self.increment(:quality, 1).save unless self.quality == "genius"
+    elsif params["inputType"].include? "thumbs-down"
+      self.increment(:quality, -1).save unless self.quality == "swill"
+    elsif params["inputType"].include? "title"
+      self.title = params["content"]
+      self.save
+    elsif params["inputType"].include? "body"
+      self.body = params["content"]
+      self.save
+    end
+  end
+
   def update_quality(button_type)
     if button_type.include? "thumbs-up"
       self.increment(:quality, 1).save unless self.quality == "genius"
