@@ -75,12 +75,16 @@ function filterIdeas(){
 }
 
 function listIdea(response){
-  return "<li>" + response.title + "<br> Idea: " + response.body +
-  "<br> Quality: " + response.quality +
-  "<br><button class='btn btn-default pull-right delete-idea' data-id='<%= idea.id %>'>Delete</button>" +
-  "<button class='btn btn-default thumbs-up' data-id='<%= idea.id %>'><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span></button>" +
-  "<button class='btn btn-default thumbs-down' data-id='<%= idea.id %>'><span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span></button></li>"
+  return "<li><div class='idea-content' id='" + response.id +
+  "'><p contenteditable='true' class='title'>" + response.title +
+  "</p><br>Idea: <p contenteditable='true' class='body'>" + response.body +
+  "</p></div><br>Quality: " + response.quality +
+  "<br><button class='btn btn-default pull-right delete-idea' data-id='" + response.id + "'>Delete</button>" +
+  "<button class='btn btn-default thumbs-up' style='margin-right:4px; data-id='" + response.id +
+  "'><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span></button><button class='btn btn-default thumbs-down' data-id='" + response.id +
+  "'><span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span></button></li>"
 }
+
 function clearFields(){
   $("#Body").val("");
   $("#Title").val("");
