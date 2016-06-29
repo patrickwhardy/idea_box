@@ -3,7 +3,6 @@ require_relative '../test_helper'
 class AddIdeaTest < ActionDispatch::IntegrationTest
   def setup
     Capybara.current_driver = :selenium
-    # assert_equal Idea.count, 0
   end
 
   def test_it_adds_an_idea

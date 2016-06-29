@@ -19,11 +19,9 @@ class Idea < ActiveRecord::Base
 
   def updateContent(params)
     if params["inputType"].include? "title"
-      self.title = params["content"]
-      self.save
+      self.update(title: params["content"])
     elsif params["inputType"].include? "body"
-      self.body = params["content"]
-      self.save
+      self.update(body: params["content"])
     end
   end
 

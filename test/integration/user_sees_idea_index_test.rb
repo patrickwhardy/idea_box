@@ -3,7 +3,6 @@ require_relative '../test_helper'
 class DisplayIdeasTest < ActionDispatch::IntegrationTest
   def setup
     @idea = create(:idea)
-    # assert_equal Idea.count, 1
   end
 
   def test_it_renders_the_root

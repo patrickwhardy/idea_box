@@ -15,4 +15,58 @@ class IdeaTest < ActiveSupport::TestCase
 
     assert_equal(Idea.all_sorted.first, idea2)
   end
+
+  test "it delegates and upvotes" do
+    idea = create(:idea)
+    assert_equal(idea.quality, "swill")
+    params = {"inputType" => "thumbs-up"}
+
+    idea.delegate_edit(params)
+    assert_equal(idea.quality, "plausible")
+  end
+
+  test "it delegates and downvotes" do
+    idea = create(:idea)
+    idea.quality = "plausible"
+    params = {"inputType" => "thumbs-down"}
+
+    idea.delegate_edit(params)
+    assert_equal(idea.quality, "swill")
+  end
+
+  test "it doesn't downvote swill" do
+    idea = create(:idea)
+    assert_equal(idea.quality, "swill")
+    params = {"inputType" => "thumbs-down"}
+
+    idea.delegate_edit(params)
+    assert_equal(idea.quality, "swill")
+  end
+
+  test "it doesn't upvote genius" do
+    idea = create(:idea)
+    idea.quality = "genius"
+    params = {"inputType" => "thumbs-up"}
+
+    idea.delegate_edit(params)
+    assert_equal(idea.quality, "genius")
+  end
+
+  test "it updates title" do
+    idea = create(:idea)
+    params = {"inputType" => "title", "content" => "WOW!"}
+
+    idea.updateContent(params)
+
+    assert_equal(idea.title, "WOW!")
+  end
+
+  test "it updates body" do
+    idea = create(:idea)
+    params = {"inputType" => "body", "content" => "WOW!"}
+
+    idea.updateContent(params)
+
+    assert_equal(idea.body, "WOW!")
+  end
 end

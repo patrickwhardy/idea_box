@@ -33,6 +33,7 @@ group :development, :test do
   gem 'pry'
   gem 'database_cleaner'
   gem 'selenium-webdriver'
+  gem 'rack-test'
 end
 
 group :development do
