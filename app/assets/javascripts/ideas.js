@@ -5,6 +5,7 @@ $(document).ready(function(){
   $(".thumbs-down").on("click", updateQuality);
   $(".title").on("blur", submitEdits);
   $(".body").on("blur", submitEdits);
+  $("#idea_filter").on("keyup", filterIdeas);
 })
 
 function postIdea(){
@@ -58,6 +59,17 @@ function submitEdits() {
     data: {inputType: inputType, content: content},
     success: function(response) {
       $("#idea-" + ideaId).html(listIdea(response));
+    }
+  })
+}
+
+function filterIdeas(){
+  var searchParams = $(this).val();
+  $(".idea-content").each(function(index, idea){
+    if(idea.innerHTML.search(searchParams) < 0){
+      $(idea).parents(".well").hide();
+    } else {
+      $(idea).parents(".well").show();
     }
   })
 }
