@@ -3,6 +3,7 @@ $(document).ready(function(){
   $(".delete-idea").on("click", deleteIdea);
   $(".thumbs-up").on("click", updateQuality);
   $(".thumbs-down").on("click", updateQuality);
+  $(".title").on("blur", submitEdits);
 })
 
 function postIdea(){
@@ -13,10 +14,8 @@ function postIdea(){
     dataType: "JSON",
     data: {idea: ideaData},
     success: function(response) {
-      $(".ideas-index").prepend("<div class='well'><li>" +
-        response.title + "<br> Idea: " + response.body +
-        "<br> Quality: " + response.quality + "</li></div>");
-        clearFields();
+      $(".ideas-index").prepend("<div class='well'>" + listIdea(response) + "</div>");
+      clearFields();
     }
   })
 }
@@ -43,15 +42,36 @@ function updateQuality(){
     data: {button_type: button_type},
     success: function(response) {
       $("#idea-" + ideaId).html(listIdea(response));
-      console.log(response);
     }
   })
+}
+
+function openEditForm(){
+  $(this).after("<form><input type='text' name='title' value=" +
+    this.childNodes[0].textContent +
+    "></form><br><form><input type='text' name='body' value=" +
+    this.childNodes[2].textContent + "></form>")
+  //   $(this).keypress(function(e) {
+  //     if(e.which == 13) {
+  //       console.log("pressed");
+  //     }
+  // });
+}
+
+function submitEdits() {
+  console.log("success");
+  console.log(this.innerHTML);
+  var title = this.innerHTML
+  
+  debugger;
 }
 
 function listIdea(response){
   return "<li>" + response.title + "<br> Idea: " + response.body +
   "<br> Quality: " + response.quality +
-  "<br><button class='btn btn-default pull-right delete-idea' data-id='<%= idea.id %>'>Delete</button><button class='btn btn-default thumbs-up' data-id='<%= idea.id %>'><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span></button><button class='btn btn-default thumbs-down' data-id='<%= idea.id %>'><span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span></button></li>"
+  "<br><button class='btn btn-default pull-right delete-idea' data-id='<%= idea.id %>'>Delete</button>" +
+  "<button class='btn btn-default thumbs-up' data-id='<%= idea.id %>'><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span></button>" +
+  "<button class='btn btn-default thumbs-down' data-id='<%= idea.id %>'><span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span></button></li>"
 }
 function clearFields(){
   $("#Body").val("");
