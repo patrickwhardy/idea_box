@@ -8,11 +8,15 @@ class Idea < ActiveRecord::Base
   end
 
   def delegate_edit(params)
-    if params["inputType"].include? "thumbs-up"
-      self.increment(:quality, 1).save unless self.quality == "genius"
-    elsif params["inputType"].include? "thumbs-down"
-      self.increment(:quality, -1).save unless self.quality == "swill"
-    elsif params["inputType"].include? "title"
+    if params["inputType"].include? "thumbs-up" || "thumbs-down"
+      self.updateQuality(params["inputType"])
+    else
+      self.updateContent(params)
+    end
+  end
+
+  def updateContent(params)
+    if params["inputType"].include? "title"
       self.title = params["content"]
       self.save
     elsif params["inputType"].include? "body"
