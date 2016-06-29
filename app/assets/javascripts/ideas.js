@@ -4,6 +4,7 @@ $(document).ready(function(){
   $(".thumbs-up").on("click", updateQuality);
   $(".thumbs-down").on("click", updateQuality);
   $(".title").on("blur", submitEdits);
+  $(".body").on("blur", submitEdits);
 })
 
 function postIdea(){
@@ -44,18 +45,6 @@ function updateQuality(){
       $("#idea-" + ideaId).html(listIdea(response));
     }
   })
-}
-
-function openEditForm(){
-  $(this).after("<form><input type='text' name='title' value=" +
-    this.childNodes[0].textContent +
-    "></form><br><form><input type='text' name='body' value=" +
-    this.childNodes[2].textContent + "></form>")
-  //   $(this).keypress(function(e) {
-  //     if(e.which == 13) {
-  //       console.log("pressed");
-  //     }
-  // });
 }
 
 function submitEdits() {
