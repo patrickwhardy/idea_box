@@ -64,11 +64,12 @@ function submitEdits() {
 }
 
 function filterIdeas(){
-  console.log("YES!")
   var searchParams = $(this).val();
   $(".idea-content").each(function(index, idea){
     if(idea.innerHTML.search(searchParams) < 0){
       $(idea).parents(".well").hide();
+    } else {
+      $(idea).parents(".well").show();
     }
   })
 }
