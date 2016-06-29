@@ -8,8 +8,10 @@ class Idea < ActiveRecord::Base
   end
 
   def delegate_edit(params)
-    if params["inputType"].include? "thumbs-up" || "thumbs-down"
-      self.updateQuality(params["inputType"])
+    if params["inputType"].include? "thumbs-up"
+      self.upvote
+    elsif params["inputType"].include? "thumbs-down"
+      self.downvote
     else
       self.updateContent(params)
     end
@@ -25,11 +27,11 @@ class Idea < ActiveRecord::Base
     end
   end
 
-  def update_quality(button_type)
-    if button_type.include? "thumbs-up"
-      self.increment(:quality, 1).save unless self.quality == "genius"
-    else
-      self.increment(:quality, -1).save unless self.quality == "swill"
-    end
+  def upvote
+    self.increment(:quality, 1).save unless self.quality == "genius"
+  end
+
+  def downvote
+    self.increment(:quality, -1).save unless self.quality == "swill"
   end
 end
