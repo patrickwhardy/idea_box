@@ -1,16 +1,19 @@
 <div class="container">
-  <div class="well">
+  <div class="well" style="text-align:center;margin-top:20px;">
     <h1>Ideas</h1>
     <p>Add a New Idea Below</p>
     <%= label_tag "Title" %>
     <%= text_area_tag "Title" %>
     <%= label_tag "Body" %>
     <%= text_area_tag "Body" %>
-    <button id="create-idea" class="btn btn-default pull-right">Save</button>
+    <button id="create-idea" class="btn btn-default">Save</button>
+    <p><strong>or</strong><br> search all ideas</p>
+    <%= label_tag "Search" %>
+    <%= text_field :idea, :filter %>
   </div>
   <ul class="ideas-index">
     <% @ideas.each do |idea| %>
-    <div class="well" id="idea-<%= idea.id %>">
+    <div class="well idea-card" id="idea-<%= idea.id %>">
       <li><div class="idea-content" id="<%= idea.id %>">
       <p contenteditable="true" class="title"> <%= idea.title %></p><br>
       Idea: <p contenteditable="true" class="body"><%= truncate(idea.body, length: 100, separator: " ") %></p></div><br>
