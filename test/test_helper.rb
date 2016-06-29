@@ -7,8 +7,6 @@ require 'database_cleaner'
 require 'pry'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  # fixtures :all
   include FactoryGirl::Syntax::Methods
 
   DatabaseCleaner.strategy = :transaction
@@ -27,4 +25,15 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
   Capybara.app = IdeaBox::Application
+  DatabaseCleaner.strategy = :truncation
+
+  def wait_for_ajax
+    Timeout.timeout(Capybara.default_max_wait_time) do
+      loop until finished_all_ajax_requests?
+    end
+  end
+
+  def finished_all_ajax_requests?
+    page.evaluate_script('jQuery.active').zero?
+  end
 end

@@ -10,6 +10,12 @@ class Api::V1::IdeasController < ApplicationController
     respond_with status: 204 if Idea.delete(params["id"])
   end
 
+  def update
+    @idea = Idea.find(params["id"])
+    @idea.delegate_edit(params)
+    respond_with :api, :v1, @idea, json: @idea
+  end
+
   private
 
   def idea_params

@@ -11,11 +11,14 @@
   <ul class="ideas-index">
     <% @ideas.each do |idea| %>
     <div class="well" id="idea-<%= idea.id %>">
-      <li> <%= idea.title %><br>
-      Idea: <%= truncate(idea.body, length: 100, separator: " ") %><br>
-      Quality: <%= idea.quality %>
+      <li><div class="idea-content" id="<%= idea.id %>">
+      <p contenteditable="true" class="title"> <%= idea.title %></p><br>
+      Idea: <p contenteditable="true" class="body"><%= truncate(idea.body, length: 100, separator: " ") %></p></div><br>
+      Quality: <%= idea.quality %><br>
       <button class="btn btn-default pull-right delete-idea" data-id="<%= idea.id %>">Delete</button>
-    </div></li>
+      <button class="btn btn-default thumbs-up" data-id="<%= idea.id %>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
+      <button class="btn btn-default thumbs-down" data-id="<%= idea.id %>"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button></li>
+    </div>
     <% end %>
   </ul>
 </div>
