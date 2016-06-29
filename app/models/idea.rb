@@ -9,9 +9,9 @@ class Idea < ActiveRecord::Base
 
   def update_quality(button_type)
     if button_type.include? "thumbs-up"
-      self.increment(:quality, 1).save
+      self.increment(:quality, 1).save unless self.quality == "genius"
     else
-      self.increment(:quality, -1).save
+      self.increment(:quality, -1).save unless self.quality == "swill"
     end
   end
 end

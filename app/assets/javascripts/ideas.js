@@ -42,12 +42,17 @@ function updateQuality(){
     dataType: "JSON",
     data: {button_type: button_type},
     success: function(response) {
-      $("#idea-" + ideaId)
-      console.log("success");
+      $("#idea-" + ideaId).html(listIdea(response));
+      console.log(response);
     }
   })
 }
 
+function listIdea(response){
+  return "<li>" + response.title + "<br> Idea: " + response.body +
+  "<br> Quality: " + response.quality +
+  "<br><button class='btn btn-default pull-right delete-idea' data-id='<%= idea.id %>'>Delete</button><button class='btn btn-default thumbs-up' data-id='<%= idea.id %>'><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span></button><button class='btn btn-default thumbs-down' data-id='<%= idea.id %>'><span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span></button></li>"
+}
 function clearFields(){
   $("#Body").val("");
   $("#Title").val("");
