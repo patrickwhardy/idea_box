@@ -1,10 +1,10 @@
 $(document).ready(function(){
-  $("#create-idea").on("click", postIdea);
-  $(".delete-idea").on("click", deleteIdea);
-  $(".thumbs-up").on("click", updateQuality);
-  $(".thumbs-down").on("click", updateQuality);
-  $(".title").on("blur", submitEdits);
-  $(".body").on("blur", submitEdits);
+  $(document).on("click", "#create-idea", postIdea)
+  $(document).on("click", ".delete-idea", deleteIdea);
+  $(document).on("click", ".thumbs-up", updateQuality);
+  $(document).on("click", ".thumbs-down", updateQuality);
+  $(document).on("blur", ".title", submitEdits);
+  $(document).on("blur", ".body", submitEdits);
   $("#idea_filter").on("keyup", filterIdeas);
 })
 
@@ -80,7 +80,7 @@ function listIdea(response){
   "</p><br>Idea: <p contenteditable='true' class='body'>" + response.body +
   "</p></div><br>Quality: " + response.quality +
   "<br><button class='btn btn-default pull-right delete-idea' data-id='" + response.id + "'>Delete</button>" +
-  "<button class='btn btn-default thumbs-up' style='margin-right:4px; data-id='" + response.id +
+  "<button class='btn btn-default thumbs-up' style='margin-right:4px;' data-id='" + response.id +
   "'><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span></button><button class='btn btn-default thumbs-down' data-id='" + response.id +
   "'><span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span></button></li>"
 }
